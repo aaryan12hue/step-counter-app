@@ -1,0 +1,46 @@
+/* Container to center the card and apply the background */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../assets/download.png');
+    background-size: 100%; /* Start at normal size */
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: zoomBackground 30s infinite; /* Apply the zoom effect */
+  }
+  
+  /* Keyframes for zooming in the background image */
+  @keyframes zoomBackground {
+    0% {
+      background-size: 100%; /* Normal size at the start */
+    }
+    50% {
+      background-size: 110%; /* Slightly zoomed in at halfway */
+    }
+    100% {
+      background-size: 100%; /* Back to normal size at the end */
+    }
+  }
+  
+  /* Styling for the card */
+  .card {
+    width: 400px; /* Larger card */
+    padding: 30px; /* Add padding */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    background-color: rgba(255, 255, 255, 0.85); /* Slight transparency */
+    text-align: center;
+  }
+  
+  button {
+    display: block;
+    margin: 20px auto; /* Space between buttons */
+  }
+  
+  button:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+  
