@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Create Contest</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Enter your name</mat-label>
+    <input matInput [(ngModel)]="userName" placeholder="Your name">
+  </mat-form-field>
+
+  <!-- Show contest ID after it's generated -->
+  <div *ngIf="contestId">
+    <p>Your Contest ID: <strong>{{contestId}}</strong></p>
+
+    <!-- Button to copy contest ID -->
+    <button mat-button color="primary" (click)="copyContestId()">Copy Contest ID</button>
+
+    <!-- Success message for copying -->
+    <p *ngIf="copied" style="color: green;">Contest ID copied to clipboard!</p>
+
+    <!-- Optionally, you can add a "Share" link -->
+    <button mat-button (click)="shareContestId()">Share Contest ID</button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button *ngIf="!contestId" (click)="createContest()">Create</button>
+  <button mat-button *ngIf="contestId" (click)="closeDialog()">OK</button>
+</mat-dialog-actions>
