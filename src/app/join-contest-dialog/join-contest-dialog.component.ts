@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { GroupData, Member } from '../model';
 
 @Component({
   standalone: true,
@@ -23,6 +24,30 @@ export class JoinContestDialogComponent {
   }
 
   joinContest(): void {
+    this.addMember(this.contestCode, this.userName);
     this.dialogRef.close({ userName: this.userName, contestCode: this.contestCode });
+  }
+
+  addMember(groupId: string, memberName: string) {
+    const newMember: Member = {
+      name: memberName,
+      payments: [] // No payments initially
+    };
+    const groupData = this.loadGroupData(groupId);
+
+    groupData?.members.push(newMember);
+
+    console.log(groupData);
+  }
+
+  loadGroupData(groupId: string) {
+    const storedGroupData = localStorage.getItem(groupId);
+
+    if (storedGroupData) {
+      return JSON.parse(storedGroupData) as GroupData; // Parse the stored data
+    } else {
+      console.log('No group data found in localStorage.');
+      return null;
+    }
   }
 }

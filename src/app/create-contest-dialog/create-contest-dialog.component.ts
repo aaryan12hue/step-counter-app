@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Payment, Member, GroupData } from '../model'
 
 @Component({
   selector: 'app-create-contest-dialog',
@@ -25,10 +26,25 @@ export class CreateContestDialogComponent {
     this.dialogRef.close();
   }
 
+  
   // Generate contest ID and show it to the user
   createContest(): void {
     if (this.userName) {
       this.contestId = this.generateContestId();
+      const groupId = this.contestId;
+      const groupData: GroupData = {
+        groupId: groupId,
+        members: [] // Initialize with an empty array, but it's now correctly typed
+      };
+      const newMember = {
+        name: this.userName,
+        payments: [] // No payments initially
+      };
+      groupData.members.push(newMember);
+      localStorage.setItem(groupId, JSON.stringify(groupData));
+      console.log('Generated Group ID:', groupId);
+      console.log('Generated Group Data:', groupData);
+
     }
   }
 
